@@ -30,6 +30,7 @@
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
@@ -45,6 +46,61 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">Syncphony: Synchronized Audio-to-Video Generation with Diffusion Transformers</h1>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://jibin86.github.io/syncphony_project_page">Jibin Song</a>,</span>
+            <span class="author-block">
+              <a href="https://sites.google.com/view/mingikwon">Mingi Kwon</a>,</span>
+            <span class="author-block">
+              <a href="https://sites.google.com/yonsei.ac.kr/jaeseokjeong">Jaeseok Jeong</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://vilab.yonsei.ac.kr/members/professor">Youngjung Uh</a>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Yonsei University</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <!-- <a href="https://arxiv.org/pdf/0000.00000" -->
+                <a href="https://jibin86.github.io/syncphony_project_page/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper (soon)</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <!-- <a href="https://arxiv.org/abs/0000.00000" -->
+                <a href="https://jibin86.github.io/syncphony_project_page/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv (soon)</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <!-- <a href="https://github.com/jibin86/syncphony" -->                 
+                <a href="https://jibin86.github.io/syncphony_project_page/"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (soon)</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -144,221 +200,64 @@
   </div>
 </section>
 
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Text-to-video and image-to-video generation have made rapid progress in visual quality, but they remain limited in controlling the precise timing of motion. 
+            In contrast, audio provides temporal cues aligned with video motion, making it a promising condition for temporally controlled video generation. 
+            However, existing audio-to-video (A2V) models struggle with fine-grained synchronization due to indirect conditioning mechanisms or limited temporal modeling capacity.
+          </p>
+          <p>
+            We present <em>Syncphony</em>, which generates 380×640 resolution, 24fps videos synchronized with diverse audio inputs. Our approach builds upon a pre-trained video backbone and incorporates three key components to improve synchronization: 
+            (1) <b>Motion-aware Loss</b>, which emphasizes learning at high-motion regions; 
+            (2) <b>Audio RoPE</b>, which injects relative temporal information into the audio-video cross-attention with Rotary Position Embedding; and 
+            (3) <b>Audio Skip Guidance</b>, which guides the full model using a visually aligned weak model without audio layers to better exploit audio cues at inference while maintaining visual quality. To evaluate synchronization, we propose <b>CycleSync</b>, a video-to-audio-based metric that measures the amount of motion cues in the generated video to reconstruct the original audio. </p>
+          <p>
+            Experiments on AVSync15 and The Greatest Hits datasets demonstrate that <b>Syncphony</b> outperforms existing methods in both synchronization accuracy and visual quality. 
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Method Overview. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Framework Overview</h2>
+        <div class="content has-text-justified">
+          <img src="./static/images/pipeline.png" style="margin-bottom: 10px;">
+          <p>
+            Given an initial frame, a text prompt, and an audio waveform, the model autoregressively predicts each video latent through iterative denoising. 
+            At each timestep, it conditions on previously generated latents, while receiving multimodal guidance:
+            text features via joint self-attention, and audio features via cross-attention.
+            For brevity, latents are visualized as RGB frames, but they are spatiotemporal features extracted by VAE.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Method Overview. -->
+  </div>
+</section>
+
 <section class="section has-text-centered">
-  <div class="container is-max-desktop" id="ablation">
-    <h1 class="title is-2">H. Ablations</h1>
-  
-    <h3 class="title is-4">H.1. Motion-aware Loss</h3>
+  <div class="container is-max-desktop" id="comparison">
+    <h2 class="title is-3">H. Comparison</h2>
 
-    <h5>lions roaring</h5>
-    <div class="columns is-vcentered interpolation-panel">
-
-      <!-- Full Model -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>Full Model</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/ablation/loss/ours/Gwlez841U_I_000007_000017-0.0_3.0.mp4"
-                    type="video/mp4">
-        </div>
-      </div>
-      <!-- Full Model -->
-
-      <!-- Without Audio RoPE -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>w/o Motion-aware Loss</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/ablation/loss/wo/Gwlez841U_I_000007_000017-0.0_3.0.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- Without Audio RoPE -->
-
+    <div class="content has-text-centered">
+      <p>
+        Qualitative comparison of videos generated by Syncphony (Ours), AVSyncD, and Skip Audio Layers, a variant of our model without audio cross-attention.
+      </p>
     </div>
-    <!--/ Sample1. -->
-       
-    <h5>frog croaking</h5>
-    <div class="columns is-vcentered interpolation-panel">
 
-      <!-- Full Model -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>Full Model</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/ablation/loss/ours/Il9qAhbbeBw_000013_000023-3.0_7.0.mp4"
-                    type="video/mp4">
-        </div>
-      </div>
-      <!-- Full Model -->
-
-      <!-- Without Audio RoPE -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>w/o Motion-aware Loss</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/ablation/loss/wo/Il9qAhbbeBw_000013_000023-3.0_7.0.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- Without Audio RoPE -->
-
-    </div>
-    <!--/ Sample1. -->
-    <h3 class="title is-4">H.2. AudioRoPE</h3>
-
-    <h5>cap gun shooting</h5>
-    <div class="columns is-vcentered interpolation-panel">
-
-      <!-- Full Model -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>Full Model</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/ablation/rope/ours/QIT6l8y0_cE_000039_000049_Scene-002-2.5_6.0.mp4"
-                    type="video/mp4">
-        </div>
-      </div>
-      <!-- Full Model -->
-
-      <!-- Without Audio RoPE -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>w/o AudioRoPE</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/ablation/rope/wo/QIT6l8y0_cE_000039_000049_Scene-002-2.5_6.0.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- Without Audio RoPE -->
-
-    </div>
-    <!--/ Sample1. -->
-
-
-
-       
-    <h5>playing trombone</h5>
-    <div class="columns is-vcentered interpolation-panel">
-
-      <!-- Full Model -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>Full Model</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/ablation/rope/ours/l0loFh-e25Y_000000_000010-2.0_8.0.mp4"
-                    type="video/mp4">
-        </div>
-      </div>
-      <!-- Full Model -->
-
-      <!-- Without Audio RoPE -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>w/o AudioRoPE</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/ablation/rope/wo/l0loFh-e25Y_000000_000010-2.0_8.0.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- Without Audio RoPE -->
-
-    </div>
-    <!--/ Sample1. -->
-  
-    <h3 class="title is-4">H.3. Audio Skip Guidance</h3>
-
-    <h5>hitting with a stick</h5>
-    <div class="columns is-vcentered interpolation-panel">
-
-      <!-- Full Model -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>Full Model (w=2)</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/ablation/ag/ours/2015-10-03-13-39-43-504_denoised.mp4"
-                    type="video/mp4">
-        </div>
-      </div>
-      <!-- Full Model -->
-
-      <!-- Without Audio RoPE -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>w/o Audio Skip Guidance</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/ablation/ag/wo/2015-10-03-13-39-43-504_denoised.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- Without Audio RoPE -->
-
-      <!-- Without Audio RoPE -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>Skip Audio Layers</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/ablation/ag/i2v/2015-10-03-13-39-43-504_denoised.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- Without Audio RoPE -->
-
-    </div>
-    <!--/ Sample1. -->
-
-    <h5>hitting with a stick</h5>
-    <div class="columns is-vcentered interpolation-panel">
-
-      <!-- Full Model -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>Full Model (w=2)</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/ablation/ag/ours/2015-03-12-19-26-26_denoised.mp4"
-                    type="video/mp4">
-        </div>
-      </div>
-      <!-- Full Model -->
-
-      <!-- Without Audio RoPE -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>w/o Audio Skip Guidance</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/ablation/ag/wo/2015-03-12-19-26-26_denoised.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- Without Audio RoPE -->
-
-      <!-- Without Audio RoPE -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>Skip Audio Layers</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/ablation/ag/i2v/2015-03-12-19-26-26_denoised.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- Without Audio RoPE -->
-
-
-    </div>
-    <!--/ Sample1. -->   
-
-  <!-- </div> -->
-  
-  <!-- <div class="container is-max-desktop" id="comparison"> -->
-    <h1 class="title is-2">I. Comparison</h1>
     <h5>frog croaking</h5>
     <div class="columns is-vcentered interpolation-panel">
 
@@ -858,8 +757,250 @@
 
     </div>
     <!--/ Sample1. -->
+  </div>
+</section>
 
-    <h1 class="title is-2">Shifted Audio with the Same Image Input</h1>
+<section class="section has-text-centered">
+  <div class="container is-max-desktop" id="ablation">
+    <h2 class="title is-3">I. Ablations</h2>
+    <h3 class="title is-4">I.1. Motion-aware Loss</h3>
+
+    <div class="content has-text-centered">
+      <p>
+        Incorporating Motion-aware Loss improves both the magnitude and temporal precision of motion, particularly at the onset and offset of dynamic actions.
+      </p>
+    </div>
+
+    <h5>lions roaring</h5>
+    <div class="columns is-vcentered interpolation-panel">
+
+      <!-- Full Model -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Full Model</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/ablation/loss/ours/Gwlez841U_I_000007_000017-0.0_3.0.mp4"
+                    type="video/mp4">
+        </div>
+      </div>
+      <!-- Full Model -->
+
+      <!-- Without Audio RoPE -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>w/o Motion-aware Loss</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/ablation/loss/wo/Gwlez841U_I_000007_000017-0.0_3.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- Without Audio RoPE -->
+
+    </div>
+    <!--/ Sample1. -->
+       
+    <h5>frog croaking</h5>
+    <div class="columns is-vcentered interpolation-panel">
+
+      <!-- Full Model -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Full Model</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/ablation/loss/ours/Il9qAhbbeBw_000013_000023-3.0_7.0.mp4"
+                    type="video/mp4">
+        </div>
+      </div>
+      <!-- Full Model -->
+
+      <!-- Without Audio RoPE -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>w/o Motion-aware Loss</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/ablation/loss/wo/Il9qAhbbeBw_000013_000023-3.0_7.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- Without Audio RoPE -->
+
+    </div>
+    <!--/ Sample1. -->
+    <h3 class="title is-4" style="margin-top: 48px;">I.2. AudioRoPE</h3>
+
+    <div class="content has-text-centered">
+      <p>
+        Applying Audio RoPE to the audio features shows tighter temporal alignment between motion and sound events.
+      </p>
+    </div>
+
+    <h5>cap gun shooting</h5>
+    <div class="columns is-vcentered interpolation-panel">
+
+      <!-- Full Model -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Full Model</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/ablation/rope/ours/QIT6l8y0_cE_000039_000049_Scene-002-2.5_6.0.mp4"
+                    type="video/mp4">
+        </div>
+      </div>
+      <!-- Full Model -->
+
+      <!-- Without Audio RoPE -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>w/o AudioRoPE</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/ablation/rope/wo/QIT6l8y0_cE_000039_000049_Scene-002-2.5_6.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- Without Audio RoPE -->
+
+    </div>
+    <!--/ Sample1. -->
+
+
+
+       
+    <h5>playing trombone</h5>
+    <div class="columns is-vcentered interpolation-panel">
+
+      <!-- Full Model -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Full Model</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/ablation/rope/ours/l0loFh-e25Y_000000_000010-2.0_8.0.mp4"
+                    type="video/mp4">
+        </div>
+      </div>
+      <!-- Full Model -->
+
+      <!-- Without Audio RoPE -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>w/o AudioRoPE</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/ablation/rope/wo/l0loFh-e25Y_000000_000010-2.0_8.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- Without Audio RoPE -->
+
+    </div>
+    <!--/ Sample1. -->
+  
+    <h3 class="title is-4" style="margin-top: 48px;">I.3. Audio Skip Guidance</h3>
+
+    <div class="content has-text-centered">
+      <p>
+        Applying Audio Skip Guidance captures subtle yet important sounds and generates motion precisely aligned with the audio cues.
+      </p>
+    </div>
+
+    <h5>hitting with a stick</h5>
+    <div class="columns is-vcentered interpolation-panel">
+
+      <!-- Full Model -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Full Model (w=2)</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/ablation/ag/ours/2015-10-03-13-39-43-504_denoised.mp4"
+                    type="video/mp4">
+        </div>
+      </div>
+      <!-- Full Model -->
+
+      <!-- Without Audio RoPE -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>w/o Audio Skip Guidance</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/ablation/ag/wo/2015-10-03-13-39-43-504_denoised.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- Without Audio RoPE -->
+
+      <!-- Without Audio RoPE -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Skip Audio Layers</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/ablation/ag/i2v/2015-10-03-13-39-43-504_denoised.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- Without Audio RoPE -->
+
+    </div>
+    <!--/ Sample1. -->
+
+    <h5>hitting with a stick</h5>
+    <div class="columns is-vcentered interpolation-panel">
+
+      <!-- Full Model -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Full Model (w=2)</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/ablation/ag/ours/2015-03-12-19-26-26_denoised.mp4"
+                    type="video/mp4">
+        </div>
+      </div>
+      <!-- Full Model -->
+
+      <!-- Without Audio RoPE -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>w/o Audio Skip Guidance</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/ablation/ag/wo/2015-03-12-19-26-26_denoised.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- Without Audio RoPE -->
+
+      <!-- Without Audio RoPE -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Skip Audio Layers</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/ablation/ag/i2v/2015-03-12-19-26-26_denoised.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- Without Audio RoPE -->
+
+
+    </div>
+    <!--/ Sample1. -->   
+  </div>
+</section>
+
+
+<section class="section has-text-centered">
+  <div class="container is-max-desktop" id="shifted">
+    <h2 class="title is-3">Shifted Audio with the Same Image Input</h2>
+
+    <div class="content has-text-centered">
+      <p>
+        Generated videos with shifted audio and the same image input demonstrate variations in motion depending on the alignment of audio cues.
+      </p>
+    </div>
+
     <h5>machine gun shooting</h5>
     <div class="columns is-vcentered interpolation-panel">
 
