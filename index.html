@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Syncphony: Synchronized Audio-to-Video Generation with Diffusion Transformers">
+  <meta name="keywords" content="Syncphony, Audio-to-Video, Diffusion Transformers">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Syncphony: Synchronized Audio-to-Video Generation with Diffusion Transformers</title>
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Syncphony: Synchronized Audio-to-Video Generation with Diffusion Transformers</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" controls playsinline height="100%">
+            <source src="./static/videos/more_samples/9rWoPW0VU00_000165_000175-0.0_3.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-steve">
+          <video poster="" id="steve" controls playsinline height="100%">
+            <source src="./static/videos/more_samples/FYldIv9lGLU_000141_000151-0.0_6.5.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-steve">
+          <video poster="" id="steve" controls playsinline height="100%">
+            <source src="./static/videos/more_samples/6zrX3NgsL7U_000290_000300-0.0_9.5.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-steve">
+          <video poster="" id="steve" controls playsinline height="100%">
+            <source src="./static/videos/more_samples/pLlHIfTP5R4_000030_000040-0.0_10.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-steve">
+          <video poster="" id="steve" controls playsinline height="100%">
+            <source src="./static/videos/more_samples/sxqKIm4LlF0_000024_000034-0.0_3.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-steve">
+          <video poster="" id="steve" controls playsinline height="100%">
+            <source src="./static/videos/more_samples/T6sSJ75v9wE_000027_000037_Scene-001-0.0_4.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-steve">
+          <video poster="" id="steve" controls playsinline height="100%">
+            <source src="./static/videos/more_samples/V0QCCLD_0s8_000130_000140_Scene-001-3.0_7.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-steve">
+          <video poster="" id="steve" controls playsinline height="100%">
+            <source src="./static/videos/more_samples/kq3sz5uOvns_000208_000218-0.0_5.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-steve">
+          <video poster="" id="steve" controls playsinline height="100%">
+            <source src="./static/videos/more_samples/dK6eZGeDjZg_000057_000067-2.5_6.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-steve">
+          <video poster="" id="steve" controls playsinline height="100%">
+            <source src="./static/videos/more_samples/A6GuZLAVqbI_000110_000120_Scene-002-0.0_3.5.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-steve">
+          <video poster="" id="steve" controls playsinline height="100%">
+            <source src="./static/videos/more_samples/3yXCtpvjz6E_000017_000027-1.0_4.5.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-steve">
+          <video poster="" id="steve" controls playsinline height="100%">
+            <source src="./static/videos/more_samples/uxEdTjXT-rs_000030_000040-1.0_5.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-steve">
+          <video poster="" id="steve" controls playsinline height="100%">
+            <source src="./static/videos/more_samples/dIIiaO12I5Q_000006_000016-0.0_3.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-steve">
+          <video poster="" id="steve" controls playsinline height="100%">
+            <source src="./static/videos/more_samples/KzK6d6Qpu_o_000010_000020-3.0_7.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section has-text-centered">
+  <div class="container is-max-desktop" id="ablation">
+    <h1 class="title is-2">H. Ablations</h1>
+  
+    <h3 class="title is-4">H.1. Motion-aware Loss</h3>
+
+    <h5>lions roaring</h5>
+    <div class="columns is-vcentered interpolation-panel">
+
+      <!-- Full Model -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Full Model</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/ablation/loss/ours/Gwlez841U_I_000007_000017-0.0_3.0.mp4"
+                    type="video/mp4">
+        </div>
+      </div>
+      <!-- Full Model -->
+
+      <!-- Without Audio RoPE -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>w/o Motion-aware Loss</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/ablation/loss/wo/Gwlez841U_I_000007_000017-0.0_3.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- Without Audio RoPE -->
+
+    </div>
+    <!--/ Sample1. -->
+       
+    <h5>frog croaking</h5>
+    <div class="columns is-vcentered interpolation-panel">
+
+      <!-- Full Model -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Full Model</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/ablation/loss/ours/Il9qAhbbeBw_000013_000023-3.0_7.0.mp4"
+                    type="video/mp4">
+        </div>
+      </div>
+      <!-- Full Model -->
+
+      <!-- Without Audio RoPE -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>w/o Motion-aware Loss</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/ablation/loss/wo/Il9qAhbbeBw_000013_000023-3.0_7.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- Without Audio RoPE -->
+
+    </div>
+    <!--/ Sample1. -->
+    <h3 class="title is-4">H.2. AudioRoPE</h3>
+
+    <h5>cap gun shooting</h5>
+    <div class="columns is-vcentered interpolation-panel">
+
+      <!-- Full Model -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Full Model</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/ablation/rope/ours/QIT6l8y0_cE_000039_000049_Scene-002-2.5_6.0.mp4"
+                    type="video/mp4">
+        </div>
+      </div>
+      <!-- Full Model -->
+
+      <!-- Without Audio RoPE -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>w/o AudioRoPE</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/ablation/rope/wo/QIT6l8y0_cE_000039_000049_Scene-002-2.5_6.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- Without Audio RoPE -->
+
+    </div>
+    <!--/ Sample1. -->
+
+
+
+       
+    <h5>playing trombone</h5>
+    <div class="columns is-vcentered interpolation-panel">
+
+      <!-- Full Model -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Full Model</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/ablation/rope/ours/l0loFh-e25Y_000000_000010-2.0_8.0.mp4"
+                    type="video/mp4">
+        </div>
+      </div>
+      <!-- Full Model -->
+
+      <!-- Without Audio RoPE -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>w/o AudioRoPE</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/ablation/rope/wo/l0loFh-e25Y_000000_000010-2.0_8.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- Without Audio RoPE -->
+
+    </div>
+    <!--/ Sample1. -->
+  
+    <h3 class="title is-4">H.3. Audio Skip Guidance</h3>
+
+    <h5>hitting with a stick</h5>
+    <div class="columns is-vcentered interpolation-panel">
+
+      <!-- Full Model -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Full Model (w=2)</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/ablation/ag/ours/2015-10-03-13-39-43-504_denoised.mp4"
+                    type="video/mp4">
+        </div>
+      </div>
+      <!-- Full Model -->
+
+      <!-- Without Audio RoPE -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>w/o Audio Skip Guidance</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/ablation/ag/wo/2015-10-03-13-39-43-504_denoised.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- Without Audio RoPE -->
+
+      <!-- Without Audio RoPE -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Skip Audio Layers</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/ablation/ag/i2v/2015-10-03-13-39-43-504_denoised.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- Without Audio RoPE -->
+
+    </div>
+    <!--/ Sample1. -->
+
+    <h5>hitting with a stick</h5>
+    <div class="columns is-vcentered interpolation-panel">
+
+      <!-- Full Model -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Full Model (w=2)</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/ablation/ag/ours/2015-03-12-19-26-26_denoised.mp4"
+                    type="video/mp4">
+        </div>
+      </div>
+      <!-- Full Model -->
+
+      <!-- Without Audio RoPE -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>w/o Audio Skip Guidance</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/ablation/ag/wo/2015-03-12-19-26-26_denoised.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- Without Audio RoPE -->
+
+      <!-- Without Audio RoPE -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Skip Audio Layers</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/ablation/ag/i2v/2015-03-12-19-26-26_denoised.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- Without Audio RoPE -->
+
+
+    </div>
+    <!--/ Sample1. -->   
+
+  <!-- </div> -->
+  
+  <!-- <div class="container is-max-desktop" id="comparison"> -->
+    <h1 class="title is-2">I. Comparison</h1>
+    <h5>frog croaking</h5>
+    <div class="columns is-vcentered interpolation-panel">
+
+      <!-- Ours -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Ours</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/ours/frog_croaking/C7VWBi27oGc_000006_000016-1.0_5.0.mp4"
+                    type="video/mp4">
+        </div>
+      </div>
+      <!-- Ours -->
+
+      <!-- AVSyncD -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>AVSyncD</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/asva/frog_croaking/C7VWBi27oGc_000006_000016-1.0_5.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- AVSyncD -->
+
+      <!-- Pyramid Flow (fine-tuned) -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Skip Audio Layers</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/i2v/frog_croaking/C7VWBi27oGc_000006_000016-1.0_5.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- Pyramid Flow (fine-tuned) -->
+
+    </div>
+    <!--/ Sample1. -->
+    <h5>lions roaring</h5>
+    <div class="columns is-vcentered interpolation-panel">
+
+      <!-- Ours -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Ours</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/ours/lions_roaring/YOrImbuhsQ8_000049_000059-1.0_4.0.mp4"
+                    type="video/mp4">
+        </div>
+      </div>
+      <!-- Ours -->
+
+      <!-- AVSyncD -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>AVSyncD</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/asva/lions_roaring/YOrImbuhsQ8_000049_000059-1.0_4.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- AVSyncD -->
+
+      <!-- Pyramid Flow (fine-tuned) -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Skip Audio Layers</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/i2v/lions_roaring/YOrImbuhsQ8_000049_000059-1.0_4.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+      <!-- Pyramid Flow (fine-tuned) -->
+      <h5>machine gun shooting</h5>
+      <div class="columns is-vcentered interpolation-panel">
+  
+        <!-- Ours -->
+        <div class="column has-text-centered">
+          <div class="content">
+            <h6>Ours</h6>
+            <video id="dollyzoom" controls playsinline height="100%">
+              <source src="./static/videos/comparison/ours/machine_gun_shooting/MTL8-cVoP64_000169_000179-0.0_3.5.mp4"
+                      type="video/mp4">
+          </div>
+        </div>
+        <!-- Ours -->
+  
+        <!-- AVSyncD -->
+        <div class="column has-text-centered">
+          <div class="content">
+            <h6>AVSyncD</h6>
+            <video id="dollyzoom" controls playsinline height="100%">
+              <source src="./static/videos/comparison/asva/machine_gun_shooting/MTL8-cVoP64_000169_000179-0.0_3.5.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <!-- AVSyncD -->
+  
+        <!-- Pyramid Flow (fine-tuned) -->
+        <div class="column has-text-centered">
+          <div class="content">
+            <h6>Skip Audio Layers</h6>
+            <video id="dollyzoom" controls playsinline height="100%">
+              <source src="./static/videos/comparison/i2v/machine_gun_shooting/MTL8-cVoP64_000169_000179-0.0_3.5.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <!-- Pyramid Flow (fine-tuned) -->
+  
+
+    </div>
+    <!--/ Sample1. -->
+
+    <h5>playing cello</h5>
+    <div class="columns is-vcentered interpolation-panel">
+
+      <!-- Ours -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Ours</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/ours/playing_cello/_f7qCwXJQmQ_000035_000045-1.0_4.0.mp4"
+                    type="video/mp4">
+        </div>
+      </div>
+      <!-- Ours -->
+
+      <!-- AVSyncD -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>AVSyncD</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/asva/playing_cello/_f7qCwXJQmQ_000035_000045-1.0_4.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- AVSyncD -->
+
+      <!-- Pyramid Flow (fine-tuned) -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Skip Audio Layers</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/i2v/playing_cello/_f7qCwXJQmQ_000035_000045-1.0_4.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- Pyramid Flow (fine-tuned) -->
+
+    </div>
+    <!--/ Sample1. -->
+
+    <h5>playing violin fiddle</h5>
+    <div class="columns is-vcentered interpolation-panel">
+
+      <!-- Ours -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Ours</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/ours/playing_violin__fiddle/0s49D-LqHwg_000030_000040-2.0_5.0.mp4"
+                    type="video/mp4">
+        </div>
+      </div>
+      <!-- Ours -->
+
+      <!-- AVSyncD -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>AVSyncD</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/asva/playing_violin__fiddle/0s49D-LqHwg_000030_000040-2.0_5.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- AVSyncD -->
+
+      <!-- Pyramid Flow (fine-tuned) -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Skip Audio Layers</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/i2v/playing_violin__fiddle/0s49D-LqHwg_000030_000040-2.0_5.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- Pyramid Flow (fine-tuned) -->
+
+    </div>
+    <!--/ Sample1. -->
+
+
+    <h5>dog barking</h5>
+    <div class="columns is-vcentered interpolation-panel">
+
+      <!-- Ours -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Ours</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/ours/dog_barking/fp6pBJ1Iygk_000026_000036-0.0_9.0.mp4"
+                    type="video/mp4">
+        </div>
+      </div>
+      <!-- Ours -->
+
+      <!-- AVSyncD -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>AVSyncD</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/asva/dog_barking/fp6pBJ1Iygk_000026_000036-0.0_9.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- AVSyncD -->
+
+      <!-- Pyramid Flow (fine-tuned) -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Skip Audio Layers</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/i2v/dog_barking/fp6pBJ1Iygk_000026_000036-0.0_9.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- Pyramid Flow (fine-tuned) -->
+
+    </div>
+    <!--/ Sample1. -->
+
+  
+
+
+    <h5>cap gun shooting</h5>
+    <div class="columns is-vcentered interpolation-panel">
+
+      <!-- Ours -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Ours</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/ours/cap_gun_shooting/UPVn_85FRCw_000020_000030-5.5_8.5.mp4"
+                    type="video/mp4">
+        </div>
+      </div>
+      <!-- Ours -->
+
+      <!-- AVSyncD -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>AVSyncD</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/asva/cap_gun_shooting/UPVn_85FRCw_000020_000030-5.5_8.5.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- AVSyncD -->
+
+      <!-- Pyramid Flow (fine-tuned) -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Skip Audio Layers</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/i2v/cap_gun_shooting/UPVn_85FRCw_000020_000030-5.5_8.5.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- Pyramid Flow (fine-tuned) -->
+
+    </div>
+    <!--/ Sample1. -->
+
+
+    <h5>chicken crowing</h5>
+    <div class="columns is-vcentered interpolation-panel">
+
+      <!-- Ours -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Ours</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/ours/chicken_crowing/OJqJgotD8D4_000038_000048-4.0_8.5.mp4"
+                    type="video/mp4">
+        </div>
+      </div>
+      <!-- Ours -->
+
+      <!-- AVSyncD -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>AVSyncD</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/asva/chicken_crowing/OJqJgotD8D4_000038_000048-4.0_8.5.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- AVSyncD -->
+
+      <!-- Pyramid Flow (fine-tuned) -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Skip Audio Layers</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/i2v/chicken_crowing/OJqJgotD8D4_000038_000048-4.0_8.5.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- Pyramid Flow (fine-tuned) -->
+
+    </div>
+    <!--/ Sample1. -->
+
+
+
+
+
+    <h5>playing trombone</h5>
+    <div class="columns is-vcentered interpolation-panel">
+
+      <!-- Ours -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Ours</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/ours/playing_trombone/L_ucgLAe-TA_000599_000609-0.0_10.0.mp4"
+                    type="video/mp4">
+        </div>
+      </div>
+      <!-- Ours -->
+
+      <!-- AVSyncD -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>AVSyncD</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/asva/playing_trombone/L_ucgLAe-TA_000599_000609-0.0_10.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- AVSyncD -->
+
+      <!-- Pyramid Flow (fine-tuned) -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Skip Audio Layers</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/i2v/playing_trombone/L_ucgLAe-TA_000599_000609-0.0_10.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- Pyramid Flow (fine-tuned) -->
+
+    </div>
+    <!--/ Sample1. -->
+
+
+    <h5>toilet flushing</h5>
+    <div class="columns is-vcentered interpolation-panel">
+
+      <!-- Ours -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Ours</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/ours/toilet_flushing/8PJoXe_XFe8_000030_000040-3.0_6.0.mp4"
+                    type="video/mp4">
+        </div>
+      </div>
+      <!-- Ours -->
+
+      <!-- AVSyncD -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>AVSyncD</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/asva/toilet_flushing/8PJoXe_XFe8_000030_000040-3.0_6.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- AVSyncD -->
+
+      <!-- Pyramid Flow (fine-tuned) -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Skip Audio Layers</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/i2v/toilet_flushing/8PJoXe_XFe8_000030_000040-3.0_6.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- Pyramid Flow (fine-tuned) -->
+
+    </div>
+    <!--/ Sample1. -->
+    
+    <h5>baby babbling crying</h5>
+    <div class="columns is-vcentered interpolation-panel">
+
+      <!-- Ours -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Ours</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/ours/baby_babbling_crying/pYsT6PjPaFY_000030_000040-0.0_5.5.mp4"
+                    type="video/mp4">
+        </div>
+      </div>
+      <!-- Ours -->
+
+      <!-- AVSyncD -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>AVSyncD</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/asva/baby_babbling_crying/pYsT6PjPaFY_000030_000040-0.0_5.5.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- AVSyncD -->
+
+      <!-- Pyramid Flow (fine-tuned) -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Skip Audio Layers</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/i2v/baby_babbling_crying/pYsT6PjPaFY_000030_000040-0.0_5.5.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- Pyramid Flow (fine-tuned) -->
+
+    </div>
+    <!--/ Sample1. -->
+
+
+    <h5>hammering</h5>
+    <div class="columns is-vcentered interpolation-panel">
+
+      <!-- Ours -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Ours</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/ours/hammering/67rx_-m3NaE_000153_000163-1.0_5.0.mp4"
+                    type="video/mp4">
+        </div>
+      </div>
+      <!-- Ours -->
+
+      <!-- AVSyncD -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>AVSyncD</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/asva/hammering/67rx_-m3NaE_000153_000163-1.0_5.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- AVSyncD -->
+
+      <!-- Pyramid Flow (fine-tuned) -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Skip Audio Layers</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/comparison/i2v/hammering/67rx_-m3NaE_000153_000163-1.0_5.0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- Pyramid Flow (fine-tuned) -->
+
+    </div>
+    <!--/ Sample1. -->
+
+    <h1 class="title is-2">Shifted Audio with the Same Image Input</h1>
+    <h5>machine gun shooting</h5>
+    <div class="columns is-vcentered interpolation-panel">
+
+      <!-- Ours -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Audio 1</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/shifted/valid-33000/FYldIv9lGLU_000141_000151-0.0_6.5_clip-00.mp4"
+                    type="video/mp4">
+        </div>
+      </div>
+      <!-- Ours -->
+
+      <!-- AVSyncD -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Audio 2</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/shifted/valid-33000/FYldIv9lGLU_000141_000151-0.0_6.5_clip-01.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- AVSyncD -->
+
+    </div>
+    <!--/ Sample1. -->
+    <h5>striking bowling</h5>
+    <div class="columns is-vcentered interpolation-panel">
+
+      <!-- Ours -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Audio 1</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/shifted/valid-33000/V0QCCLD_0s8_000130_000140_Scene-001-3.0_7.0_clip-01.mp4"
+                    type="video/mp4">
+        </div>
+      </div>
+      <!-- Ours -->
+
+      <!-- AVSyncD -->
+      <div class="column has-text-centered">
+        <div class="content">
+          <h6>Audio 2</h6>
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/shifted/valid-33000/V0QCCLD_0s8_000130_000140_Scene-001-3.0_7.0_clip-02.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!-- AVSyncD -->
+    </div>
+    <!--/ Sample1. -->
+
+    
+  <!--/ Sample1. -->
+  <h5>playing trombone</h5>
+  <div class="columns is-vcentered interpolation-panel">
+
+    <!-- Ours -->
+    <div class="column has-text-centered">
+      <div class="content">
+        <h6>Audio 1</h6>
+        <video id="dollyzoom" controls playsinline height="100%">
+          <source src="./static/videos/shifted/valid-33000/L_ucgLAe-TA_000599_000609-0.0_10.0_clip-00.mp4"
+                  type="video/mp4">
+      </div>
+    </div>
+    <!-- Ours -->
+
+    <!-- AVSyncD -->
+    <div class="column has-text-centered">
+      <div class="content">
+        <h6>Audio 2</h6>
+        <video id="dollyzoom" controls playsinline height="100%">
+          <source src="./static/videos/shifted/valid-33000/L_ucgLAe-TA_000599_000609-0.0_10.0_clip-01.mp4"
+                  type="video/mp4">
+        </video>
+      </div>
+    </div>
+    <!-- AVSyncD -->
+  </div>
+  <!--/ Sample1. -->
+
+  </div>
+</section>
+
+
+</body>
+</html>
