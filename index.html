@@ -213,10 +213,11 @@
             However, existing audio-to-video (A2V) models struggle with fine-grained synchronization due to indirect conditioning mechanisms or limited temporal modeling capacity.
           </p>
           <p>
-            We present <em>Syncphony</em>, which generates 380×640 resolution, 24fps videos synchronized with diverse audio inputs. Our approach builds upon a pre-trained video backbone and incorporates three key components to improve synchronization: 
+            We present <em>Syncphony</em>, which generates 380×640 resolution, 24fps videos synchronized with diverse audio inputs. Our approach builds upon a pre-trained video backbone and incorporates two key components to improve synchronization: 
             (1) <b>Motion-aware Loss</b>, which emphasizes learning at high-motion regions; 
-            (2) <b>Audio RoPE</b>, which injects relative temporal information into the audio-video cross-attention with Rotary Position Embedding; and 
-            (3) <b>Audio Skip Guidance</b>, which guides the full model using a visually aligned weak model without audio layers to better exploit audio cues at inference while maintaining visual quality. To evaluate synchronization, we propose <b>CycleSync</b>, a video-to-audio-based metric that measures the amount of motion cues in the generated video to reconstruct the original audio. </p>
+            <!-- (2) <b>Audio RoPE</b>, which injects relative temporal information into the audio-video cross-attention with Rotary Position Embedding; and  -->
+            (2) <b>Audio Sync Guidance</b>, which guides the full model using a visually aligned off-sync model without audio layers to better exploit audio cues at inference while maintaining visual quality.
+            To evaluate synchronization, we propose <b>CycleSync</b>, a video-to-audio-based metric that measures the amount of motion cues in the generated video to reconstruct the original audio. </p>
           <p>
             Experiments on AVSync15 and The Greatest Hits datasets demonstrate that <b>Syncphony</b> outperforms existing methods in both synchronization accuracy and visual quality. 
           </p>
@@ -267,7 +268,7 @@
         <div class="content">
           <h6>Audio 1</h6>
           <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/shifted/valid-33000/FYldIv9lGLU_000141_000151-0.0_6.5_clip-00.mp4"
+            <source src="./static/videos/shifted/FYldIv9lGLU_000141_000151-0.0_6.5_clip-00.mp4"
                     type="video/mp4">
         </div>
       </div>
@@ -278,7 +279,7 @@
         <div class="content">
           <h6>Audio 2</h6>
           <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/shifted/valid-33000/FYldIv9lGLU_000141_000151-0.0_6.5_clip-01.mp4"
+            <source src="./static/videos/shifted/FYldIv9lGLU_000141_000151-0.0_6.5_clip-01.mp4"
                     type="video/mp4">
           </video>
         </div>
@@ -295,7 +296,7 @@
         <div class="content">
           <h6>Audio 1</h6>
           <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/shifted/valid-33000/V0QCCLD_0s8_000130_000140_Scene-001-3.0_7.0_clip-01.mp4"
+            <source src="./static/videos/shifted/V0QCCLD_0s8_000130_000140_Scene-001-3.0_7.0_clip-01.mp4"
                     type="video/mp4">
         </div>
       </div>
@@ -306,7 +307,7 @@
         <div class="content">
           <h6>Audio 2</h6>
           <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/shifted/valid-33000/V0QCCLD_0s8_000130_000140_Scene-001-3.0_7.0_clip-02.mp4"
+            <source src="./static/videos/shifted/V0QCCLD_0s8_000130_000140_Scene-001-3.0_7.0_clip-02.mp4"
                     type="video/mp4">
           </video>
         </div>
@@ -325,7 +326,7 @@
       <div class="content">
         <h6>Audio 1</h6>
         <video id="dollyzoom" controls playsinline height="100%">
-          <source src="./static/videos/shifted/valid-33000/L_ucgLAe-TA_000599_000609-0.0_10.0_clip-00.mp4"
+          <source src="./static/videos/shifted/L_ucgLAe-TA_000599_000609-0.0_10.0_clip-00.mp4"
                   type="video/mp4">
       </div>
     </div>
@@ -336,7 +337,7 @@
       <div class="content">
         <h6>Audio 2</h6>
         <video id="dollyzoom" controls playsinline height="100%">
-          <source src="./static/videos/shifted/valid-33000/L_ucgLAe-TA_000599_000609-0.0_10.0_clip-01.mp4"
+          <source src="./static/videos/shifted/L_ucgLAe-TA_000599_000609-0.0_10.0_clip-01.mp4"
                   type="video/mp4">
         </video>
       </div>
@@ -351,11 +352,12 @@
 
 <section class="section has-text-centered">
   <div class="container is-max-desktop" id="comparison">
-    <h2 class="title is-3">H. Comparison</h2>
+    <h2 class="title is-3">Comparison</h2>
 
     <div class="content has-text-centered">
       <p>
-        Qualitative comparison of videos generated by Syncphony (Ours), AVSyncD, and Skip Audio Layers, a variant of our model without audio cross-attention.
+        Qualitative comparison of videos generated by Syncphony (Ours), AVSyncD, and Pyramid Flow (fine-tuned), which is a variant of our model without audio cross-attention layers.  
+        Our method generates motions that are temporally aligned with audio events and produces clearer motion dynamics and stable appearances.
       </p>
     </div>
 
@@ -365,38 +367,13 @@
       <!-- Ours -->
       <div class="column has-text-centered">
         <div class="content">
-          <h6>Ours</h6>
+          
           <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/ours/frog_croaking/C7VWBi27oGc_000006_000016-1.0_5.0.mp4"
+            <source src="./static/videos/comparison/C7VWBi27oGc_000006_000016-1.0_5.0.mp4"
                     type="video/mp4">
         </div>
       </div>
       <!-- Ours -->
-
-      <!-- AVSyncD -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>AVSyncD</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/asva/frog_croaking/C7VWBi27oGc_000006_000016-1.0_5.0.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- AVSyncD -->
-
-      <!-- Pyramid Flow (fine-tuned) -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>Skip Audio Layers</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/i2v/frog_croaking/C7VWBi27oGc_000006_000016-1.0_5.0.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- Pyramid Flow (fine-tuned) -->
-
     </div>
     <!--/ Sample1. -->
     <h5>lions roaring</h5>
@@ -405,36 +382,13 @@
       <!-- Ours -->
       <div class="column has-text-centered">
         <div class="content">
-          <h6>Ours</h6>
+          
           <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/ours/lions_roaring/YOrImbuhsQ8_000049_000059-1.0_4.0.mp4"
+            <source src="./static/videos/comparison/YOrImbuhsQ8_000049_000059-1.0_4.0.mp4"
                     type="video/mp4">
         </div>
       </div>
       <!-- Ours -->
-
-      <!-- AVSyncD -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>AVSyncD</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/asva/lions_roaring/YOrImbuhsQ8_000049_000059-1.0_4.0.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- AVSyncD -->
-
-      <!-- Pyramid Flow (fine-tuned) -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>Skip Audio Layers</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/i2v/lions_roaring/YOrImbuhsQ8_000049_000059-1.0_4.0.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
     </div>
       <!-- Pyramid Flow (fine-tuned) -->
       <h5>machine gun shooting</h5>
@@ -443,37 +397,13 @@
         <!-- Ours -->
         <div class="column has-text-centered">
           <div class="content">
-            <h6>Ours</h6>
+            
             <video id="dollyzoom" controls playsinline height="100%">
-              <source src="./static/videos/comparison/ours/machine_gun_shooting/MTL8-cVoP64_000169_000179-0.0_3.5.mp4"
+              <source src="./static/videos/comparison/MTL8-cVoP64_000169_000179-0.0_3.5.mp4"
                       type="video/mp4">
           </div>
         </div>
         <!-- Ours -->
-  
-        <!-- AVSyncD -->
-        <div class="column has-text-centered">
-          <div class="content">
-            <h6>AVSyncD</h6>
-            <video id="dollyzoom" controls playsinline height="100%">
-              <source src="./static/videos/comparison/asva/machine_gun_shooting/MTL8-cVoP64_000169_000179-0.0_3.5.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-        </div>
-        <!-- AVSyncD -->
-  
-        <!-- Pyramid Flow (fine-tuned) -->
-        <div class="column has-text-centered">
-          <div class="content">
-            <h6>Skip Audio Layers</h6>
-            <video id="dollyzoom" controls playsinline height="100%">
-              <source src="./static/videos/comparison/i2v/machine_gun_shooting/MTL8-cVoP64_000169_000179-0.0_3.5.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-        </div>
-        <!-- Pyramid Flow (fine-tuned) -->
   
 
     </div>
@@ -485,37 +415,12 @@
       <!-- Ours -->
       <div class="column has-text-centered">
         <div class="content">
-          <h6>Ours</h6>
+          
           <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/ours/playing_cello/f7qCwXJQmQ_000035_000045-1.0_4.0.mp4"
+            <source src="./static/videos/comparison/f7qCwXJQmQ_000035_000045-1.0_4.0.mp4"
                     type="video/mp4">
         </div>
       </div>
-      <!-- Ours -->
-
-      <!-- AVSyncD -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>AVSyncD</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/asva/playing_cello/f7qCwXJQmQ_000035_000045-1.0_4.0.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- AVSyncD -->
-
-      <!-- Pyramid Flow (fine-tuned) -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>Skip Audio Layers</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/i2v/playing_cello/f7qCwXJQmQ_000035_000045-1.0_4.0.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- Pyramid Flow (fine-tuned) -->
 
     </div>
     <!--/ Sample1. -->
@@ -526,37 +431,13 @@
       <!-- Ours -->
       <div class="column has-text-centered">
         <div class="content">
-          <h6>Ours</h6>
+          
           <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/ours/playing_violin__fiddle/0s49D-LqHwg_000030_000040-2.0_5.0.mp4"
+            <source src="./static/videos/comparison/0s49D-LqHwg_000030_000040-2.0_5.0.mp4"
                     type="video/mp4">
         </div>
       </div>
       <!-- Ours -->
-
-      <!-- AVSyncD -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>AVSyncD</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/asva/playing_violin__fiddle/0s49D-LqHwg_000030_000040-2.0_5.0.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- AVSyncD -->
-
-      <!-- Pyramid Flow (fine-tuned) -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>Skip Audio Layers</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/i2v/playing_violin__fiddle/0s49D-LqHwg_000030_000040-2.0_5.0.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- Pyramid Flow (fine-tuned) -->
 
     </div>
     <!--/ Sample1. -->
@@ -568,38 +449,13 @@
       <!-- Ours -->
       <div class="column has-text-centered">
         <div class="content">
-          <h6>Ours</h6>
+          
           <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/ours/dog_barking/fp6pBJ1Iygk_000026_000036-0.0_9.0.mp4"
+            <source src="./static/videos/comparison/fp6pBJ1Iygk_000026_000036-0.0_9.0.mp4"
                     type="video/mp4">
         </div>
       </div>
       <!-- Ours -->
-
-      <!-- AVSyncD -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>AVSyncD</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/asva/dog_barking/fp6pBJ1Iygk_000026_000036-0.0_9.0.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- AVSyncD -->
-
-      <!-- Pyramid Flow (fine-tuned) -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>Skip Audio Layers</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/i2v/dog_barking/fp6pBJ1Iygk_000026_000036-0.0_9.0.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- Pyramid Flow (fine-tuned) -->
-
     </div>
     <!--/ Sample1. -->
 
@@ -612,37 +468,13 @@
       <!-- Ours -->
       <div class="column has-text-centered">
         <div class="content">
-          <h6>Ours</h6>
+          
           <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/ours/cap_gun_shooting/UPVn_85FRCw_000020_000030-5.5_8.5.mp4"
+            <source src="./static/videos/comparison/UPVn_85FRCw_000020_000030-5.5_8.5.mp4"
                     type="video/mp4">
         </div>
       </div>
       <!-- Ours -->
-
-      <!-- AVSyncD -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>AVSyncD</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/asva/cap_gun_shooting/UPVn_85FRCw_000020_000030-5.5_8.5.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- AVSyncD -->
-
-      <!-- Pyramid Flow (fine-tuned) -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>Skip Audio Layers</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/i2v/cap_gun_shooting/UPVn_85FRCw_000020_000030-5.5_8.5.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- Pyramid Flow (fine-tuned) -->
 
     </div>
     <!--/ Sample1. -->
@@ -654,82 +486,29 @@
       <!-- Ours -->
       <div class="column has-text-centered">
         <div class="content">
-          <h6>Ours</h6>
+          
           <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/ours/chicken_crowing/OJqJgotD8D4_000038_000048-4.0_8.5.mp4"
+            <source src="./static/videos/comparison/OJqJgotD8D4_000038_000048-4.0_8.5.mp4"
                     type="video/mp4">
         </div>
       </div>
       <!-- Ours -->
 
-      <!-- AVSyncD -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>AVSyncD</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/asva/chicken_crowing/OJqJgotD8D4_000038_000048-4.0_8.5.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- AVSyncD -->
-
-      <!-- Pyramid Flow (fine-tuned) -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>Skip Audio Layers</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/i2v/chicken_crowing/OJqJgotD8D4_000038_000048-4.0_8.5.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- Pyramid Flow (fine-tuned) -->
-
     </div>
     <!--/ Sample1. -->
-
-
-
-
-
     <h5>playing trombone</h5>
     <div class="columns is-vcentered interpolation-panel">
 
       <!-- Ours -->
       <div class="column has-text-centered">
         <div class="content">
-          <h6>Ours</h6>
+          
           <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/ours/playing_trombone/L_ucgLAe-TA_000599_000609-0.0_10.0.mp4"
+            <source src="./static/videos/comparison/L_ucgLAe-TA_000599_000609-0.0_10.0.mp4"
                     type="video/mp4">
         </div>
       </div>
       <!-- Ours -->
-
-      <!-- AVSyncD -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>AVSyncD</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/asva/playing_trombone/L_ucgLAe-TA_000599_000609-0.0_10.0.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- AVSyncD -->
-
-      <!-- Pyramid Flow (fine-tuned) -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>Skip Audio Layers</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/i2v/playing_trombone/L_ucgLAe-TA_000599_000609-0.0_10.0.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- Pyramid Flow (fine-tuned) -->
 
     </div>
     <!--/ Sample1. -->
@@ -741,37 +520,13 @@
       <!-- Ours -->
       <div class="column has-text-centered">
         <div class="content">
-          <h6>Ours</h6>
+          
           <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/ours/toilet_flushing/8PJoXe_XFe8_000030_000040-3.0_6.0.mp4"
+            <source src="./static/videos/comparison/8PJoXe_XFe8_000030_000040-3.0_6.0.mp4"
                     type="video/mp4">
         </div>
       </div>
       <!-- Ours -->
-
-      <!-- AVSyncD -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>AVSyncD</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/asva/toilet_flushing/8PJoXe_XFe8_000030_000040-3.0_6.0.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- AVSyncD -->
-
-      <!-- Pyramid Flow (fine-tuned) -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>Skip Audio Layers</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/i2v/toilet_flushing/8PJoXe_XFe8_000030_000040-3.0_6.0.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- Pyramid Flow (fine-tuned) -->
 
     </div>
     <!--/ Sample1. -->
@@ -782,37 +537,13 @@
       <!-- Ours -->
       <div class="column has-text-centered">
         <div class="content">
-          <h6>Ours</h6>
+          
           <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/ours/baby_babbling_crying/pYsT6PjPaFY_000030_000040-0.0_5.5.mp4"
+            <source src="./static/videos/comparison/pYsT6PjPaFY_000030_000040-0.0_5.5.mp4"
                     type="video/mp4">
         </div>
       </div>
       <!-- Ours -->
-
-      <!-- AVSyncD -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>AVSyncD</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/asva/baby_babbling_crying/pYsT6PjPaFY_000030_000040-0.0_5.5.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- AVSyncD -->
-
-      <!-- Pyramid Flow (fine-tuned) -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>Skip Audio Layers</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/i2v/baby_babbling_crying/pYsT6PjPaFY_000030_000040-0.0_5.5.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- Pyramid Flow (fine-tuned) -->
 
     </div>
     <!--/ Sample1. -->
@@ -824,37 +555,13 @@
       <!-- Ours -->
       <div class="column has-text-centered">
         <div class="content">
-          <h6>Ours</h6>
+          
           <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/ours/hammering/67rx_-m3NaE_000153_000163-1.0_5.0.mp4"
+            <source src="./static/videos/comparison/67rx_-m3NaE_000153_000163-1.0_5.0.mp4"
                     type="video/mp4">
         </div>
       </div>
       <!-- Ours -->
-
-      <!-- AVSyncD -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>AVSyncD</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/asva/hammering/67rx_-m3NaE_000153_000163-1.0_5.0.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- AVSyncD -->
-
-      <!-- Pyramid Flow (fine-tuned) -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>Skip Audio Layers</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/comparison/i2v/hammering/67rx_-m3NaE_000153_000163-1.0_5.0.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- Pyramid Flow (fine-tuned) -->
 
     </div>
     <!--/ Sample1. -->
@@ -863,8 +570,8 @@
 
 <section class="section has-text-centered">
   <div class="container is-max-desktop" id="ablation">
-    <h2 class="title is-3">I. Ablations</h2>
-    <h3 class="title is-4">I.1. Motion-aware Loss</h3>
+    <h2 class="title is-3">Ablations</h2>
+    <h3 class="title is-4">1. Motion-aware Loss</h3>
 
     <div class="content has-text-centered">
       <p>
@@ -878,26 +585,13 @@
       <!-- Full Model -->
       <div class="column has-text-centered">
         <div class="content">
-          <h6>Full Model</h6>
+
           <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/ablation/loss/ours/Gwlez841U_I_000007_000017-0.0_3.0.mp4"
+            <source src="./static/videos/ablation/loss/Gwlez841U_I_000007_000017-0.0_3.0.mp4"
                     type="video/mp4">
         </div>
       </div>
       <!-- Full Model -->
-
-      <!-- Without Audio RoPE -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>w/o Motion-aware Loss</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/ablation/loss/wo/Gwlez841U_I_000007_000017-0.0_3.0.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- Without Audio RoPE -->
-
     </div>
     <!--/ Sample1. -->
        
@@ -907,29 +601,58 @@
       <!-- Full Model -->
       <div class="column has-text-centered">
         <div class="content">
-          <h6>Full Model</h6>
+
           <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/ablation/loss/ours/Il9qAhbbeBw_000013_000023-3.0_7.0.mp4"
+            <source src="./static/videos/ablation/loss/Il9qAhbbeBw_000013_000023-3.0_7.0.mp4"
                     type="video/mp4">
         </div>
       </div>
       <!-- Full Model -->
 
-      <!-- Without Audio RoPE -->
+    </div>
+    <!--/ Sample1. -->
+    <h3 class="title is-4" style="margin-top: 48px;">2. Audio Sync Guidance</h3>
+
+    <div class="content has-text-centered">
+      <p>
+        Applying Audio Sync Guidance captures (ASG) subtle yet important sounds and generates motion precisely aligned with the audio cues (Full Model (w=2) hits the exact target).
+      </p>
+    </div>
+
+    <h5>hitting with a stick</h5>
+    <div class="columns is-vcentered interpolation-panel">
+
+      <!-- Full Model -->
       <div class="column has-text-centered">
         <div class="content">
-          <h6>w/o Motion-aware Loss</h6>
+          
           <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/ablation/loss/wo/Il9qAhbbeBw_000013_000023-3.0_7.0.mp4"
+            <source src="./static/videos/ablation/ag/2015-10-03-13-39-43-504_denoised.mp4"
                     type="video/mp4">
-          </video>
         </div>
       </div>
-      <!-- Without Audio RoPE -->
+      <!-- Full Model -->
 
     </div>
     <!--/ Sample1. -->
-    <h3 class="title is-4" style="margin-top: 48px;">I.2. AudioRoPE</h3>
+
+    <h5>hitting with a stick</h5>
+    <div class="columns is-vcentered interpolation-panel">
+
+      <!-- Full Model -->
+      <div class="column has-text-centered">
+        <div class="content">
+          
+          <video id="dollyzoom" controls playsinline height="100%">
+            <source src="./static/videos/ablation/ag/2015-03-12-19-26-26_denoised.mp4"
+                    type="video/mp4">
+        </div>
+      </div>
+      <!-- Full Model -->
+    </div>
+    <!--/ Sample1. -->
+    
+    <h3 class="title is-4" style="margin-top: 48px;">3. Audio RoPE</h3>
 
     <div class="content has-text-centered">
       <p>
@@ -943,25 +666,14 @@
       <!-- Full Model -->
       <div class="column has-text-centered">
         <div class="content">
-          <h6>Full Model</h6>
+
           <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/ablation/rope/ours/QIT6l8y0_cE_000039_000049_Scene-002-2.5_6.0.mp4"
+            <source src="./static/videos/ablation/rope/QIT6l8y0_cE_000039_000049_Scene-002-2.5_6.0.mp4"
                     type="video/mp4">
         </div>
       </div>
       <!-- Full Model -->
 
-      <!-- Without Audio RoPE -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>w/o AudioRoPE</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/ablation/rope/wo/QIT6l8y0_cE_000039_000049_Scene-002-2.5_6.0.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- Without Audio RoPE -->
 
     </div>
     <!--/ Sample1. -->
@@ -975,121 +687,25 @@
       <!-- Full Model -->
       <div class="column has-text-centered">
         <div class="content">
-          <h6>Full Model</h6>
+
           <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/ablation/rope/ours/l0loFh-e25Y_000000_000010-2.0_8.0.mp4"
+            <source src="./static/videos/ablation/rope/l0loFh-e25Y_000000_000010-2.0_8.0.mp4"
                     type="video/mp4">
         </div>
       </div>
       <!-- Full Model -->
-
-      <!-- Without Audio RoPE -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>w/o AudioRoPE</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/ablation/rope/wo/l0loFh-e25Y_000000_000010-2.0_8.0.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- Without Audio RoPE -->
-
-    </div>
-    <!--/ Sample1. -->
-  
-    <h3 class="title is-4" style="margin-top: 48px;">I.3. Audio Skip Guidance</h3>
-
-    <div class="content has-text-centered">
-      <p>
-        Applying Audio Skip Guidance captures subtle yet important sounds and generates motion precisely aligned with the audio cues.
-      </p>
-    </div>
-
-    <h5>hitting with a stick</h5>
-    <div class="columns is-vcentered interpolation-panel">
-
-      <!-- Full Model -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>Full Model (w=2)</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/ablation/ag/ours/2015-10-03-13-39-43-504_denoised.mp4"
-                    type="video/mp4">
-        </div>
-      </div>
-      <!-- Full Model -->
-
-      <!-- Without Audio RoPE -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>w/o Audio Skip Guidance</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/ablation/ag/wo/2015-10-03-13-39-43-504_denoised.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- Without Audio RoPE -->
-
-      <!-- Without Audio RoPE -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>Skip Audio Layers</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/ablation/ag/i2v/2015-10-03-13-39-43-504_denoised.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- Without Audio RoPE -->
-
-    </div>
-    <!--/ Sample1. -->
-
-    <h5>hitting with a stick</h5>
-    <div class="columns is-vcentered interpolation-panel">
-
-      <!-- Full Model -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>Full Model (w=2)</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/ablation/ag/ours/2015-03-12-19-26-26_denoised.mp4"
-                    type="video/mp4">
-        </div>
-      </div>
-      <!-- Full Model -->
-
-      <!-- Without Audio RoPE -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>w/o Audio Skip Guidance</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/ablation/ag/wo/2015-03-12-19-26-26_denoised.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- Without Audio RoPE -->
-
-      <!-- Without Audio RoPE -->
-      <div class="column has-text-centered">
-        <div class="content">
-          <h6>Skip Audio Layers</h6>
-          <video id="dollyzoom" controls playsinline height="100%">
-            <source src="./static/videos/ablation/ag/i2v/2015-03-12-19-26-26_denoised.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!-- Without Audio RoPE -->
 
 
     </div>
     <!--/ Sample1. -->   
   </div>
 </section>
+<footer class="footer">
+  <div class="content has-text-centered">
+    <p>
+      This project page is built upon <a href="https://nerfies.github.io/">Nerfies</a>, and we thank the authors for releasing their source code.
+    </p>
+  </div>
 
 </body>
 </html>
