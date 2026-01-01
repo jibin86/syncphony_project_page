@@ -37,6 +37,126 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    .toc-box {
+      margin-top: 1.5rem;
+    }
+    .back-to-top {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 1000;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: #3273dc;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+      font-size: 18px;
+    }
+    .back-to-top:hover {
+      background: #2759a5;
+    }
+    /* --- TOC (Option A) --- */
+    .toc-card {
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 14px;
+      padding: 18px 18px 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    }
+
+    .toc-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .toc-title {
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      font-size: 1.05rem;
+    }
+
+    .toc-list,
+    .toc-sublist {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .toc-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 10px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: #363636;
+      transition: background 0.15s ease, transform 0.15s ease;
+    }
+
+    .toc-item:hover {
+      background: rgba(50,115,220,0.08);
+      transform: translateY(-1px);
+    }
+
+    .toc-badge {
+      width: 26px;
+      height: 26px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: rgba(50,115,220,0.12);
+      color: #3273dc;
+      font-weight: 700;
+      font-size: 0.85rem;
+      flex: 0 0 26px;
+    }
+
+    .toc-text {
+      font-size: 0.98rem;
+      line-height: 1.25;
+    }
+
+    .toc-group {
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1px dashed rgba(0,0,0,0.10);
+    }
+
+    .toc-sublist {
+      margin: 6px 0 2px 36px;
+      padding-left: 14px;
+      border-left: 2px solid rgba(50,115,220,0.18);
+    }
+
+    .toc-subitem {
+      display: inline-block;
+      padding: 7px 8px;
+      margin: 2px 0;
+      border-radius: 8px;
+      color: #4a4a4a;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: background 0.15s ease;
+    }
+
+    .toc-subitem:hover {
+      background: rgba(0,0,0,0.04);
+    }
+
+  </style>
 </head>
 <body>
 
@@ -249,10 +369,71 @@
   </div>
 </section>
 
+<!-- Section: Table of Contents -->
+<section class="section" id="contents">
+  <div class="container is-max-desktop">
+    <nav class="toc-card" aria-label="Table of contents">
+      <div class="toc-header">
+        <span class="toc-title">Contents</span>
+      </div>
 
-<section class="section has-text-centered">
+      <ul class="toc-list">
+        <li>
+          <a class="toc-item" href="#section-A">
+            <span class="toc-badge">A</span>
+            <span class="toc-text">Shifted Audio with the Same Image Input</span>
+          </a>
+        </li>
+
+        <li>
+          <a class="toc-item" href="#section-B">
+            <span class="toc-badge">B</span>
+            <span class="toc-text">Comparison</span>
+          </a>
+        </li>
+
+        <li>
+          <a class="toc-item" href="#section-C">
+            <span class="toc-badge">C</span>
+            <span class="toc-text">Ablations</span>
+          </a>
+
+          <ul class="toc-sublist">
+            <li>
+              <a class="toc-subitem" href="#section-C1">C.1. Motion-aware Loss</a>
+            </li>
+            <li>
+              <a class="toc-subitem" href="#section-C2">C.2. Audio Sync Guidance</a>
+            </li>
+            <li>
+              <a class="toc-subitem" href="#section-C3">C.3. Audio RoPE</a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="toc-group">
+          <a class="toc-item" href="#section-D">
+            <span class="toc-badge">D</span>
+            <span class="toc-text">Application of ASG to Other A2V Models</span>
+          </a>
+
+          <ul class="toc-sublist">
+            <li>
+              <a class="toc-subitem" href="#section-D1">D.1. Wan 2.2 S2V (14B)</a>
+            </li>
+            <li>
+              <a class="toc-subitem" href="#section-D2">D.2. ASyncD A2V</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</section>
+
+<section class="section has-text-centered" id="section-A">
   <div class="container is-max-desktop" id="shifted">
-    <h2 class="title is-3">Shifted Audio with the Same Image Input</h2>
+    <h2 class="title is-3">A. Shifted Audio with the Same Image Input</h2>
 
     <div class="content has-text-centered">
       <p>
@@ -270,6 +451,7 @@
           <video id="dollyzoom" controls playsinline height="100%">
             <source src="./static/videos/shifted/FYldIv9lGLU_000141_000151-0.0_6.5_clip-00.mp4"
                     type="video/mp4">
+          </video>
         </div>
       </div>
       <!-- Ours -->
@@ -298,6 +480,7 @@
           <video id="dollyzoom" controls playsinline height="100%">
             <source src="./static/videos/shifted/V0QCCLD_0s8_000130_000140_Scene-001-3.0_7.0_clip-01.mp4"
                     type="video/mp4">
+          </video>
         </div>
       </div>
       <!-- Ours -->
@@ -328,6 +511,7 @@
         <video id="dollyzoom" controls playsinline height="100%">
           <source src="./static/videos/shifted/L_ucgLAe-TA_000599_000609-0.0_10.0_clip-00.mp4"
                   type="video/mp4">
+        </video>
       </div>
     </div>
     <!-- Ours -->
@@ -350,9 +534,9 @@
 </section>
 
 
-<section class="section has-text-centered">
+<section class="section has-text-centered" id="section-B">
   <div class="container is-max-desktop" id="comparison">
-    <h2 class="title is-3">Comparison</h2>
+    <h2 class="title is-3">B. Comparison</h2>
 
     <div class="content has-text-centered">
       <p>
@@ -371,6 +555,7 @@
           <video id="dollyzoom" controls playsinline loop height="100%">
             <source src="./static/videos/comparison/C7VWBi27oGc_000006_000016-1.0_5.0.mp4"
                     type="video/mp4">
+          </video>
         </div>
       </div>
       <!-- Ours -->
@@ -386,6 +571,7 @@
           <video id="dollyzoom" controls playsinline loop height="100%">
             <source src="./static/videos/comparison/YOrImbuhsQ8_000049_000059-1.0_4.0.mp4"
                     type="video/mp4">
+          </video>
         </div>
       </div>
       <!-- Ours -->
@@ -401,6 +587,7 @@
             <video id="dollyzoom" controls playsinline loop height="100%">
               <source src="./static/videos/comparison/MTL8-cVoP64_000169_000179-0.0_3.5.mp4"
                       type="video/mp4">
+            </video>
           </div>
         </div>
         <!-- Ours -->
@@ -419,6 +606,7 @@
           <video id="dollyzoom" controls playsinline loop height="100%">
             <source src="./static/videos/comparison/f7qCwXJQmQ_000035_000045-1.0_4.0.mp4"
                     type="video/mp4">
+          </video>
         </div>
       </div>
 
@@ -435,6 +623,7 @@
           <video id="dollyzoom" controls playsinline loop height="100%">
             <source src="./static/videos/comparison/0s49D-LqHwg_000030_000040-2.0_5.0.mp4"
                     type="video/mp4">
+          </video>
         </div>
       </div>
       <!-- Ours -->
@@ -453,6 +642,7 @@
           <video id="dollyzoom" controls playsinline loop height="100%">
             <source src="./static/videos/comparison/fp6pBJ1Iygk_000026_000036-0.0_9.0.mp4"
                     type="video/mp4">
+          </video>
         </div>
       </div>
       <!-- Ours -->
@@ -472,6 +662,7 @@
           <video id="dollyzoom" controls playsinline loop height="100%">
             <source src="./static/videos/comparison/UPVn_85FRCw_000020_000030-5.5_8.5.mp4"
                     type="video/mp4">
+          </video>
         </div>
       </div>
       <!-- Ours -->
@@ -490,6 +681,7 @@
           <video id="dollyzoom" controls playsinline loop height="100%">
             <source src="./static/videos/comparison/OJqJgotD8D4_000038_000048-4.0_8.5.mp4"
                     type="video/mp4">
+          </video>
         </div>
       </div>
       <!-- Ours -->
@@ -506,6 +698,7 @@
           <video id="dollyzoom" controls playsinline loop height="100%">
             <source src="./static/videos/comparison/L_ucgLAe-TA_000599_000609-0.0_10.0.mp4"
                     type="video/mp4">
+          </video>
         </div>
       </div>
       <!-- Ours -->
@@ -524,6 +717,7 @@
           <video id="dollyzoom" controls playsinline loop height="100%">
             <source src="./static/videos/comparison/8PJoXe_XFe8_000030_000040-3.0_6.0.mp4"
                     type="video/mp4">
+          </video>
         </div>
       </div>
       <!-- Ours -->
@@ -541,6 +735,7 @@
           <video id="dollyzoom" controls playsinline loop height="100%">
             <source src="./static/videos/comparison/pYsT6PjPaFY_000030_000040-0.0_5.5.mp4"
                     type="video/mp4">
+          </video>
         </div>
       </div>
       <!-- Ours -->
@@ -559,6 +754,7 @@
           <video id="dollyzoom" controls playsinline loop height="100%">
             <source src="./static/videos/comparison/67rx_-m3NaE_000153_000163-1.0_5.0.mp4"
                     type="video/mp4">
+          </video>
         </div>
       </div>
       <!-- Ours -->
@@ -568,10 +764,10 @@
   </div>
 </section>
 
-<section class="section has-text-centered">
+<section class="section has-text-centered" id="section-C">
   <div class="container is-max-desktop" id="ablation">
-    <h2 class="title is-3">Ablations</h2>
-    <h3 class="title is-4">1. Motion-aware Loss</h3>
+    <h2 class="title is-3">C. Ablations</h2>
+    <h3 class="title is-4" id="section-C1">C.1. Motion-aware Loss</h3>
 
     <div class="content has-text-centered">
       <p>
@@ -589,6 +785,7 @@
           <video id="dollyzoom" controls playsinline loop height="100%">
             <source src="./static/videos/ablation/loss/Gwlez841U_I_000007_000017-0.0_3.0.mp4"
                     type="video/mp4">
+          </video>
         </div>
       </div>
       <!-- Full Model -->
@@ -605,13 +802,14 @@
           <video id="dollyzoom" controls playsinline loop height="100%">
             <source src="./static/videos/ablation/loss/Il9qAhbbeBw_000013_000023-3.0_7.0.mp4"
                     type="video/mp4">
+          </video>
         </div>
       </div>
       <!-- Full Model -->
 
     </div>
     <!--/ Sample1. -->
-    <h3 class="title is-4" style="margin-top: 48px;">2. Audio Sync Guidance</h3>
+    <h3 class="title is-4" style="margin-top: 48px;" id="section-C2">C.2. Audio Sync Guidance</h3>
 
     <div class="content has-text-centered">
       <p>
@@ -629,6 +827,7 @@
           <video id="dollyzoom" controls playsinline loop height="100%">
             <source src="./static/videos/ablation/ag/2015-10-03-13-39-43-504_denoised.mp4"
                     type="video/mp4">
+          </video>
         </div>
       </div>
       <!-- Full Model -->
@@ -646,13 +845,14 @@
           <video id="dollyzoom" controls playsinline loop height="100%">
             <source src="./static/videos/ablation/ag/2015-03-12-19-26-26_denoised.mp4"
                     type="video/mp4">
+          </video>
         </div>
       </div>
       <!-- Full Model -->
     </div>
     <!--/ Sample1. -->
     
-    <h3 class="title is-4" style="margin-top: 48px;">3. Audio RoPE</h3>
+    <h3 class="title is-4" style="margin-top: 48px;" id="section-C3">C.3. Audio RoPE</h3>
 
     <div class="content has-text-centered">
       <p>
@@ -670,6 +870,7 @@
           <video id="dollyzoom" controls playsinline loop height="100%">
             <source src="./static/videos/ablation/rope/QIT6l8y0_cE_000039_000049_Scene-002-2.5_6.0.mp4"
                     type="video/mp4">
+          </video>
         </div>
       </div>
       <!-- Full Model -->
@@ -691,6 +892,7 @@
           <video id="dollyzoom" controls playsinline loop height="100%">
             <source src="./static/videos/ablation/rope/l0loFh-e25Y_000000_000010-2.0_8.0.mp4"
                     type="video/mp4">
+          </video>
         </div>
       </div>
       <!-- Full Model -->
@@ -700,6 +902,146 @@
     <!--/ Sample1. -->   
   </div>
 </section>
+
+
+<section class="section has-text-centered" id="section-D">
+  <div class="container is-max-desktop" id="ablation">
+    <h2 class="title is-3">D. Application of ASG to Other A2V Models</h2>
+    <h3 class="title is-4" id="section-D1">D.1. Wan 2.2 S2V (14B)</h3>
+
+    <div class="content has-text-centered">
+      <p>
+        These results show the effect of applying ASG to Wan 2.2 Speech-to-Video (14B), a substantially larger video-generation model than Pyramid Flow.
+        In each pair of samples, the left video shows ASG (skipping audio-conditioning layers during inference), and the right video shows Zero-Audio CFG (using zeroed audio as the unconditional branch).  
+        ASG produces clearer, more realistic, and more temporally aligned motion compared to Zero-Audio CFG, demonstrating that ASG remains effective even for large-scale video models.
+      </p>
+    </div>
+
+    <div id="ablation-items-wan">
+      <!-- -->
+    </div>
+  </div>
+</section>
+
+<section class="section has-text-centered">
+  <div class="container is-max-desktop" id="ablation">
+    <h3 class="title is-4" id="section-D2">D.2. ASyncD A2V</h3>
+
+    <div class="content has-text-centered">
+      <p>
+        These results show the comparison on ASyncD. As before, the left video corresponds to ASG, while the right video corresponds to Zero-Audio CFG.
+        ASG produces motion that follows the audio more distinctly than Zero-Audio CFG.
+        Fine-grained synchronization is harder to assess due to ASyncD's low frame rate (6 fps), but the improvement in motion responsiveness is clearly observable.
+      </p>
+    </div>
+
+    <div id="ablation-items-asva">
+      <!-- -->
+    </div>
+  </div>
+</section>
+
+<!-- Back to Top Button -->
+<!-- 위로가기 버튼 -->
+<a href="#contents" class="back-to-top"> <!--#top-->
+  <i class="fas fa-arrow-up"></i>
+</a>
+
+<script>
+  async function loadJSON(path) {
+    const res = await fetch(path);
+    if (!res.ok) {
+      console.error('Failed to load', path);
+      return null;
+    }
+    return res.json();
+  }
+
+  function createVideoElement(src) {
+    const video = document.createElement('video');
+    video.setAttribute('controls', '');
+    video.setAttribute('playsinline', '');
+    video.setAttribute('height', '100%');
+    video.setAttribute('loop', '');
+
+    const source = document.createElement('source');
+    source.src = './static/videos/' + src;
+    source.type = 'video/mp4';
+
+    video.appendChild(source);
+    return video;
+  }
+  
+  // 4) ASG Wan section
+  async function initComparison1() {
+    const data = await loadJSON('./static/videos/ASG_wan/videos.json');
+    if (!data) return;
+
+    const container = document.getElementById('ablation-items-wan');
+    container.innerHTML = '';
+
+    data.items.forEach((item) => {
+      // const h5 = document.createElement('h5');
+      // h5.textContent = item.title;
+      // container.appendChild(h5);
+
+      const columns = document.createElement('div');
+      columns.className = 'columns is-vcentered interpolation-panel';
+
+      const col = document.createElement('div');
+      col.className = 'column has-text-centered';
+
+      const content = document.createElement('div');
+      content.className = 'content';
+
+      const video = createVideoElement(item.file);
+      video.id = 'dollyzoom';
+
+      content.appendChild(video);
+      col.appendChild(content);
+      columns.appendChild(col);
+      container.appendChild(columns);
+    });
+  }
+
+  // 5) ASG asva section
+  async function initAblation() {
+    const data = await loadJSON('./static/videos/ASG_asva/videos.json');
+    if (!data) return;
+
+    const container = document.getElementById('ablation-items-asva');
+    container.innerHTML = '';
+
+    data.items.forEach((item) => {
+      const h5 = document.createElement('h5');
+      h5.textContent = item.title;
+      container.appendChild(h5);
+
+      const columns = document.createElement('div');
+      columns.className = 'columns is-vcentered interpolation-panel';
+
+      const col = document.createElement('div');
+      col.className = 'column has-text-centered';
+
+      const content = document.createElement('div');
+      content.className = 'content';
+
+      const video = createVideoElement(item.file);
+      video.id = 'dollyzoom';
+
+      content.appendChild(video);
+      col.appendChild(content);
+      columns.appendChild(col);
+      container.appendChild(columns);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initComparison1();
+    initAblation();
+  });
+</script>
+
 <footer class="footer">
   <div class="content has-text-centered">
     <p>
