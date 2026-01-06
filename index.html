@@ -378,51 +378,51 @@
       </div>
 
       <ul class="toc-list">
-        <li>
+        <li class="toc-group">
           <a class="toc-item" href="#section-A">
             <span class="toc-badge">A</span>
-            <span class="toc-text">Shifted Audio with the Same Image Input</span>
+            <span class="toc-text">Application of ASG to Other A2V Models</span>
           </a>
+
+          <ul class="toc-sublist">
+            <li>
+              <a class="toc-subitem" href="#section-A1">A.1. Wan 2.2 S2V (14B)</a>
+            </li>
+            <li>
+              <a class="toc-subitem" href="#section-A2">A.2. ASyncD A2V</a>
+            </li>
+          </ul>
         </li>
 
         <li>
           <a class="toc-item" href="#section-B">
             <span class="toc-badge">B</span>
-            <span class="toc-text">Comparison</span>
+            <span class="toc-text">Shifted Audio with the Same Image Input</span>
           </a>
         </li>
 
         <li>
           <a class="toc-item" href="#section-C">
             <span class="toc-badge">C</span>
+            <span class="toc-text">Comparison</span>
+          </a>
+        </li>
+
+        <li>
+          <a class="toc-item" href="#section-D">
+            <span class="toc-badge">D</span>
             <span class="toc-text">Ablations</span>
           </a>
 
           <ul class="toc-sublist">
             <li>
-              <a class="toc-subitem" href="#section-C1">C.1. Motion-aware Loss</a>
+              <a class="toc-subitem" href="#section-D1">D.1. Motion-aware Loss</a>
             </li>
             <li>
-              <a class="toc-subitem" href="#section-C2">C.2. Audio Sync Guidance</a>
+              <a class="toc-subitem" href="#section-D2">D.2. Audio Sync Guidance</a>
             </li>
             <li>
-              <a class="toc-subitem" href="#section-C3">C.3. Audio RoPE</a>
-            </li>
-          </ul>
-        </li>
-
-        <li class="toc-group">
-          <a class="toc-item" href="#section-D">
-            <span class="toc-badge">D</span>
-            <span class="toc-text">Application of ASG to Other A2V Models</span>
-          </a>
-
-          <ul class="toc-sublist">
-            <li>
-              <a class="toc-subitem" href="#section-D1">D.1. Wan 2.2 S2V (14B)</a>
-            </li>
-            <li>
-              <a class="toc-subitem" href="#section-D2">D.2. ASyncD A2V</a>
+              <a class="toc-subitem" href="#section-D3">D.3. Audio RoPE</a>
             </li>
           </ul>
         </li>
@@ -431,9 +431,48 @@
   </div>
 </section>
 
+
 <section class="section has-text-centered" id="section-A">
+  <div class="container is-max-desktop" id="ablation">
+    <h2 class="title is-3">A. Application of ASG to Other A2V Models</h2>
+    <h3 class="title is-4" id="section-A1">A.1. Wan 2.2 S2V (14B)</h3>
+
+    <div class="content has-text-centered">
+      <p>
+        These results show the effect of applying ASG to Wan 2.2 Speech-to-Video (14B), a substantially larger video-generation model than Pyramid Flow.
+        In each pair of samples, the left video shows ASG (skipping audio-conditioning layers during inference), and the right video shows Zero-Audio CFG (using zeroed audio as the unconditional branch).  
+        ASG produces clearer, more realistic, and more temporally aligned motion compared to Zero-Audio CFG, demonstrating that ASG remains effective even for large-scale video models.
+      </p>
+    </div>
+
+    <div id="ablation-items-wan">
+      <!-- -->
+    </div>
+  </div>
+</section>
+
+<section class="section has-text-centered">
+  <div class="container is-max-desktop" id="ablation">
+    <h3 class="title is-4" id="section-A2">A.2. ASyncD A2V</h3>
+
+    <div class="content has-text-centered">
+      <p>
+        These results show the comparison on ASyncD. As before, the left video corresponds to ASG, while the right video corresponds to Zero-Audio CFG.
+        ASG produces motion that follows the audio more distinctly than Zero-Audio CFG.
+        Fine-grained synchronization is harder to assess due to ASyncD's low frame rate (6 fps), but the improvement in motion responsiveness is clearly observable.
+      </p>
+    </div>
+
+    <div id="ablation-items-asva">
+      <!-- -->
+    </div>
+  </div>
+</section>
+
+
+<section class="section has-text-centered" id="section-B">
   <div class="container is-max-desktop" id="shifted">
-    <h2 class="title is-3">A. Shifted Audio with the Same Image Input</h2>
+    <h2 class="title is-3">B. Shifted Audio with the Same Image Input</h2>
 
     <div class="content has-text-centered">
       <p>
@@ -534,9 +573,9 @@
 </section>
 
 
-<section class="section has-text-centered" id="section-B">
+<section class="section has-text-centered" id="section-C">
   <div class="container is-max-desktop" id="comparison">
-    <h2 class="title is-3">B. Comparison</h2>
+    <h2 class="title is-3">C. Comparison</h2>
 
     <div class="content has-text-centered">
       <p>
@@ -764,10 +803,10 @@
   </div>
 </section>
 
-<section class="section has-text-centered" id="section-C">
+<section class="section has-text-centered" id="section-D">
   <div class="container is-max-desktop" id="ablation">
-    <h2 class="title is-3">C. Ablations</h2>
-    <h3 class="title is-4" id="section-C1">C.1. Motion-aware Loss</h3>
+    <h2 class="title is-3">D. Ablations</h2>
+    <h3 class="title is-4" id="section-D1">D.1. Motion-aware Loss</h3>
 
     <div class="content has-text-centered">
       <p>
@@ -809,7 +848,7 @@
 
     </div>
     <!--/ Sample1. -->
-    <h3 class="title is-4" style="margin-top: 48px;" id="section-C2">C.2. Audio Sync Guidance</h3>
+    <h3 class="title is-4" style="margin-top: 48px;" id="section-D2">D.2. Audio Sync Guidance</h3>
 
     <div class="content has-text-centered">
       <p>
@@ -852,7 +891,7 @@
     </div>
     <!--/ Sample1. -->
     
-    <h3 class="title is-4" style="margin-top: 48px;" id="section-C3">C.3. Audio RoPE</h3>
+    <h3 class="title is-4" style="margin-top: 48px;" id="section-D3">D.3. Audio RoPE</h3>
 
     <div class="content has-text-centered">
       <p>
@@ -900,44 +939,6 @@
 
     </div>
     <!--/ Sample1. -->   
-  </div>
-</section>
-
-
-<section class="section has-text-centered" id="section-D">
-  <div class="container is-max-desktop" id="ablation">
-    <h2 class="title is-3">D. Application of ASG to Other A2V Models</h2>
-    <h3 class="title is-4" id="section-D1">D.1. Wan 2.2 S2V (14B)</h3>
-
-    <div class="content has-text-centered">
-      <p>
-        These results show the effect of applying ASG to Wan 2.2 Speech-to-Video (14B), a substantially larger video-generation model than Pyramid Flow.
-        In each pair of samples, the left video shows ASG (skipping audio-conditioning layers during inference), and the right video shows Zero-Audio CFG (using zeroed audio as the unconditional branch).  
-        ASG produces clearer, more realistic, and more temporally aligned motion compared to Zero-Audio CFG, demonstrating that ASG remains effective even for large-scale video models.
-      </p>
-    </div>
-
-    <div id="ablation-items-wan">
-      <!-- -->
-    </div>
-  </div>
-</section>
-
-<section class="section has-text-centered">
-  <div class="container is-max-desktop" id="ablation">
-    <h3 class="title is-4" id="section-D2">D.2. ASyncD A2V</h3>
-
-    <div class="content has-text-centered">
-      <p>
-        These results show the comparison on ASyncD. As before, the left video corresponds to ASG, while the right video corresponds to Zero-Audio CFG.
-        ASG produces motion that follows the audio more distinctly than Zero-Audio CFG.
-        Fine-grained synchronization is harder to assess due to ASyncD's low frame rate (6 fps), but the improvement in motion responsiveness is clearly observable.
-      </p>
-    </div>
-
-    <div id="ablation-items-asva">
-      <!-- -->
-    </div>
   </div>
 </section>
 
